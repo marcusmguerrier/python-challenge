@@ -1,13 +1,11 @@
-#import OS module
+#import them modules
 import os
-
-#import module to read CSV files
 import csv
 
-#assign os.path.join to a variable
+#file path
 csv_path = os.path.join("Resources", "budget_data.csv") 
 
-#Set Variables
+# Variables
 total_months = 0
 total_profit_loss = 0
 prev_profit_loss = 0
@@ -19,37 +17,37 @@ greatest_increase_month = ""
 greatest_decrease = 0
 greatest_increase_month = ""
 
-# Open the CSV
+# Open the CSV 
 with open(csv_path, newline="") as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
 
-      # Read the header row first
+      # Header row
     csv_header = next(csvreader)
     
-    # Read each row of data after the header
+    # Row of data after the header
     for row in csvreader:
-        # count the total number of months
+        #total number of months
         total_months += 1
         
-        # add up the total net profit/loss
+        # total net profit/loss
         total_profit_loss += int(row[1])
         
-        # calculate the change in profit/loss between months
+        # change in profit/loss between months
         if total_months > 1:
             month_change = int(row[1]) - prev_profit_loss
             
-        # add up the total monthly change, used later to calculate average
+        # total monthly change, used later to calculate average
         total_month_change += month_change
         
         # set profit/loss value for previous month
         prev_profit_loss = int(row[1])
         
-        # calculate greatest increase in profits
+        # greatest increase in profits
         if month_change > greatest_increase:
             greatest_increase = month_change
             greatest_increase_month = row[0]
         
-        # calculate greatest decrease in losses
+        # greatest decrease in losses
         if month_change < greatest_decrease:
             greatest_decrease = month_change
             greatest_decrease_month = row[0]

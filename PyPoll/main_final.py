@@ -17,10 +17,10 @@ winner = ""
 with open(csvpath, newline="") as csvfile:
     csvreader = csv.reader(csvfile, delimiter=",")
     
-    # Read the header row first
+    # header row 
     csv_header = next(csvreader)
     
-    # Read each row of data after the header
+    # data after the header
     for row in csvreader:
         # count the total number of months
         total_votes += 1
